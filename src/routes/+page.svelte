@@ -9,7 +9,7 @@
 	on:click={() => {
 		goto('/generator');
 	}}
-	class="button">Start</button
+	class="button">Start generating</button
 >
 
 <style>

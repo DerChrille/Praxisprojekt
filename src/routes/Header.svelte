@@ -5,14 +5,14 @@
 <header>
 	<nav>
 		<ul>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+				<a href="/">Home</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/generator' ? 'page' : undefined}>
-				<a href="/generator">Generator</a>
+				<a href="/generator">Generate</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">routes</a>
+			<li aria-current={$page.url.pathname === '/play' ? 'page' : undefined}>
+				<a href="/play">Play</a>
 			</li>
 		</ul>
 	</nav>

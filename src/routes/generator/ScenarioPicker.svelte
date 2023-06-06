@@ -49,6 +49,11 @@
 		cursor: auto;
 	}
 
+	img:hover {
+		outline: 3px solid var(--color-accent-brighter);
+		filter: brightness(110%);
+	}
+
 	section {
 		display: flex;
 		gap: 12px;

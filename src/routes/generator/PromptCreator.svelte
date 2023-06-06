@@ -14,6 +14,8 @@
 	let showPromptSelection = false;
 </script>
 
+<h2>Personalize your escape room!</h2>
+
 <p>
 	You may now enter up to three words to shape the story. Please use words only, no phrases or whole
 	sentences.
@@ -26,10 +28,9 @@
 
 {#if showPromptSelection}
 	<hr />
-	<label for="prompt-0"
+	<label for="prompt-0" class:invalid={!promptsValid[0]}
 		><span>Prompt 1</span><input
 			id="prompt-0"
-			class:invalid={!promptsValid[0]}
 			bind:value={promptValues[0]}
 			maxlength={maxWordLength}
 			type="text"
@@ -37,11 +38,10 @@
 		/></label
 	>
 	{#if promptValues.some((x) => x !== '')}
-		<label for="prompt-1"
+		<label for="prompt-1" class:invalid={!promptsValid[1]}
 			><span>Prompt 2</span>
 			<input
 				id="prompt-1"
-				class:invalid={!promptsValid[1]}
 				bind:value={promptValues[1]}
 				maxlength={maxWordLength}
 				type="text"
@@ -50,11 +50,11 @@
 		>{/if}
 
 	{#if (promptValues[0] !== '' && promptValues[1] !== '') || promptValues[2] !== ''}<label
+			class:invalid={!promptsValid[2]}
 			for="prompt-2"
 			><span>Prompt 3</span>
 			<input
 				id="prompt-2"
-				class:invalid={!promptsValid[2]}
 				bind:value={promptValues[2]}
 				maxlength={maxWordLength}
 				type="text"
@@ -72,6 +72,7 @@
 		display: flex;
 		gap: 12px;
 		align-items: center;
+		font-weight: 700;
 	}
 	label + label {
 		margin-top: 1em;
@@ -81,9 +82,12 @@
 		word-break: keep-all;
 	}
 
-	input.invalid {
-		outline: 1px solid var(--color-error);
+	label.invalid {
 		color: var(--color-error);
+	}
+
+	label.invalid input {
+		outline: 1px solid var(--color-error);
 	}
 
 	.confirmation {

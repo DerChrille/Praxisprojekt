@@ -3,5 +3,5 @@
 </script>
 
 escape room page for room:
-
+<br />
 {JSON.stringify($currentRoomPlaying)}

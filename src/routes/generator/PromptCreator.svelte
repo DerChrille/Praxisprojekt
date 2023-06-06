@@ -15,16 +15,19 @@
 </script>
 
 <p>
-	Als Nächstes dürfen Sie Ihre Story mit bis zu drei Worten selbst gestalten. Bitte verwenden Sie
-	nur Wörter, keine Satzteile oder ganze Sätze.
+	You may now enter up to three words to shape the story. Please use words only, no phrases or whole
+	sentences.
 </p>
-<button disabled={showPromptSelection} on:click={() => (showPromptSelection = true)}
-	>Verstanden</button
+<button
+	class="confirmation"
+	disabled={showPromptSelection}
+	on:click={() => (showPromptSelection = true)}>Understood</button
 >
 
 {#if showPromptSelection}
+	<hr />
 	<label for="prompt-0"
-		>Wort 1 <input
+		><span>Prompt 1</span><input
 			id="prompt-0"
 			class:invalid={!promptsValid[0]}
 			bind:value={promptValues[0]}
@@ -35,7 +38,7 @@
 	>
 	{#if promptValues.some((x) => x !== '')}
 		<label for="prompt-1"
-			>Wort 2
+			><span>Prompt 2</span>
 			<input
 				id="prompt-1"
 				class:invalid={!promptsValid[1]}
@@ -48,7 +51,7 @@
 
 	{#if (promptValues[0] !== '' && promptValues[1] !== '') || promptValues[2] !== ''}<label
 			for="prompt-2"
-			>Wort 3
+			><span>Prompt 3</span>
 			<input
 				id="prompt-2"
 				class:invalid={!promptsValid[2]}
@@ -60,13 +63,34 @@
 		>{/if}
 
 	<button disabled={!promptsValid.every((x) => x == true)} on:click={() => $generatorProgress++}
-		>Fertig</button
+		>Continue</button
 	>
 {/if}
 
 <style>
+	label {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+	}
+	label + label {
+		margin-top: 1em;
+	}
+	label > span {
+		flex: 1 0 7%;
+		word-break: keep-all;
+	}
+
 	input.invalid {
-		border: 1px solid red;
-		color: red;
+		outline: 1px solid var(--color-error);
+		color: var(--color-error);
+	}
+
+	.confirmation {
+		align-self: center;
+	}
+
+	button {
+		margin-top: 0.5em;
 	}
 </style>

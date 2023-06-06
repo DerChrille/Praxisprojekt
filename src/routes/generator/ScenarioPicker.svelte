@@ -8,30 +8,36 @@
 		buttonDisabed = undefined;
 	}
 
-	$: buttonLabel = $scenario == 0 ? 'Wähle ein Szenario' : `Weiter mit Szenario ${$scenario}`;
+	$: buttonLabel = $scenario == 0 ? 'Choose a scenario' : `Continue with scenario #${$scenario}`;
 </script>
 
-Shasdoljkgsdflkg
+<h2>Choose a scenario...</h2>
+<p>Select one of the three scenarios presented.</p>
+
 <section>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<div class:selected={$scenario == 1} on:click={() => selectScenario(1)}>
+	<figure class:selected={$scenario == 1} on:click={() => selectScenario(1)}>
+		<figcaption><h4>Szenario 1: XYZ</h4></figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 1" />
-	</div>
+	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<div class:selected={$scenario == 2} on:click={() => selectScenario(2)}>
+	<figure class:selected={$scenario == 2} on:click={() => selectScenario(2)}>
+		<figcaption><h4>Szenario 2: XYZ</h4></figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 2" />
-	</div>
+	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<div class:selected={$scenario == 3} on:click={() => selectScenario(3)}>
+	<figure class:selected={$scenario == 3} on:click={() => selectScenario(3)}>
+		<figcaption><h4>Szenario 3: XYZ</h4></figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 3" />
-	</div>
+	</figure>
 </section>
 
 <button disabled={buttonDisabed} on:click={() => $generatorProgress++}>{buttonLabel}</button>
 
 <style>
-	.selected {
-		outline: 3px solid red;
+	.selected > img {
+		outline: 3px solid var(--color-accent);
+		cursor: auto;
 	}
 
 	section {
@@ -40,11 +46,20 @@ Shasdoljkgsdflkg
 		margin-bottom: 1em;
 	}
 
-	section div {
+	section figure {
 		flex: 1;
+		margin: 0;
+	}
+
+	figcaption h4 {
+		margin: 0;
+		margin-bottom: 0.3em;
+		text-align: center;
 	}
 
 	img {
 		width: 100%;
+		transition: outline 0.1s ease-in-out;
+		cursor: pointer;
 	}
 </style>

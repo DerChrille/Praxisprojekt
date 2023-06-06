@@ -7,7 +7,9 @@
 </script>
 
 {#if $generatorProgress == 0}
-	<p>Starte den Generator</p>
+	<h2>Let's begin!</h2>
+	<p>Press the Start button to begin generating.</p>
+
 	<button on:click={() => $generatorProgress++}>Start</button>
 {:else if $generatorProgress == 1}
 	<ScenarioPicker />

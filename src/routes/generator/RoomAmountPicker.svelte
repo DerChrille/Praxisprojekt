@@ -1,7 +1,9 @@
 <script>
 	import { roomAmount, generatorProgress } from '$lib/stores';
 
-	$: buttonLabel = !touchedSlider ? 'Wie viele Räume?' : `Weiter mit ${$roomAmount} Räumen `;
+	$: buttonLabel = !touchedSlider
+		? 'How many rooms?'
+		: `Continue with ${$roomAmount} ${$roomAmount <= 1 ? 'room' : 'rooms'} `;
 	let buttonDisabed = true;
 
 	const roomMin = 1;
@@ -20,6 +22,9 @@
 	let sliderElement;
 </script>
 
+<h2>How long do you want to play?</h2>
+<p>Choose the amount of puzzles you want to solve.</p>
+
 <div class="slider" data-min={roomMin} data-max={roomMax}>
 	<input
 		bind:this={sliderElement}
@@ -31,7 +36,7 @@
 		on:input={() => roomAmountChosen(sliderElement.value)}
 	/>
 </div>
-Rooommanpunfasüd8ifhsd
+
 <button disabled={buttonDisabed} on:click={() => $generatorProgress++}>{buttonLabel}</button>
 
 <style>
@@ -42,8 +47,16 @@ Rooommanpunfasüd8ifhsd
 	}
 	.slider:before {
 		content: attr(data-min);
+		margin-right: 1em;
+		font-size: 140%;
 	}
 	.slider:after {
 		content: attr(data-max);
+		margin-left: 1em;
+		font-size: 140%;
+	}
+
+	button {
+		margin-top: 1em;
 	}
 </style>

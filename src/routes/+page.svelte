@@ -3,21 +3,26 @@
 </script>
 
 <h1>Welcome!</h1>
-<h2>Do you want to proceed?</h2>
+<p>Welcome to <em>Escape Room Generator</em>. What do you want to do?</p>
 
-<button
-	on:click={() => {
-		goto('/generator');
-	}}
-	class="button">Start generating</button
->
+<div>
+	<button on:click={() => goto('/generator')}>Generate</button>
+	<button on:click={() => goto('/play')}>Play</button>
+</div>
 
 <style>
 	h1 {
-		font-size: 10rem;
-	}
-	h2 {
 		text-align: center;
-		font-size: 3rem;
+	}
+
+	div {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	div button {
+		flex: 1;
 	}
 </style>

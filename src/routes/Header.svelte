@@ -4,7 +4,7 @@
 
 <header>
 	<div class="blocker" />
-	<h1>Escape Room Generator</h1>
+	<a href="/"><h2>Escape Room Generator</h2></a>
 	<nav>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
@@ -32,9 +32,9 @@
 		margin: 0.5em 1em;
 	}
 
-	h1 {
+	h2 {
 		margin-top: 0;
-		margin-top: 0;
+		margin-bottom: 0;
 	}
 
 	nav {

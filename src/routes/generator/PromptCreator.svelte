@@ -3,13 +3,10 @@
 
 	const maxWordLength = 30;
 
-	let prompt1text = '';
-	let prompt2text = '';
-	let prompt3text = '';
 	const promptValues = ['', '', ''];
 	const promptsValid = [true, true, true];
 
-	function setPrompt(key, val) {
+	function setPrompt(key) {
 		promptsValid[key] = !promptValues[key].includes(' ');
 		if (promptsValid[key]) $prompts[key] = promptValues[key];
 	}

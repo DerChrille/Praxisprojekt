@@ -3,6 +3,8 @@
 </script>
 
 <header>
+	<div class="blocker" />
+	<h1>Escape Room Generator</h1>
 	<nav>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
@@ -19,15 +21,25 @@
 </header>
 
 <style>
+	.blocker,
+	nav {
+		flex: 1;
+	}
+
 	header {
-		display: center;
-		justify-content: space-between;
+		display: flex;
+		justify-content: center;
+		margin: 0.5em 1em;
+	}
+
+	h1 {
+		margin-top: 0;
+		margin-top: 0;
 	}
 
 	nav {
 		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		justify-content: flex-end;
 	}
 
 	ul {
@@ -39,8 +51,6 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
-		background: var(--background);
-		background-size: contain;
 	}
 
 	li {
@@ -48,16 +58,11 @@
 		height: 100%;
 	}
 
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
+	li[aria-current='page'] a {
+		font-weight: 700;
+		text-decoration: underline;
+		color: var(--color-accent-brighter);
+		cursor: default;
 	}
 
 	nav a {
@@ -66,10 +71,7 @@
 		align-items: center;
 		padding: 0 0.5rem;
 		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
 		text-decoration: none;
 		transition: color 0.2s linear;
 	}

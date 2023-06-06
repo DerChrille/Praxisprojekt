@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p><strong>Das ist ein Test</strong></p>
+		<p>Escape Room Generator - Praxisprojekt 2023</p>
 	</footer>
 </div>
 

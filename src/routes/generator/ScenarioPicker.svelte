@@ -17,17 +17,26 @@
 <section>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
 	<figure class:selected={$scenario == 1} on:click={() => selectScenario(1)}>
-		<figcaption><h4>Szenario 1: XYZ</h4></figcaption>
+		<figcaption>
+			<h4>Scenario 1: XYZ</h4>
+			<p>This scenario does some things</p>
+		</figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 1" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
 	<figure class:selected={$scenario == 2} on:click={() => selectScenario(2)}>
-		<figcaption><h4>Szenario 2: XYZ</h4></figcaption>
+		<figcaption>
+			<h4>Scenario 2: XYZ</h4>
+			<p>This scenario does some things</p>
+		</figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 2" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
 	<figure class:selected={$scenario == 3} on:click={() => selectScenario(3)}>
-		<figcaption><h4>Szenario 3: XYZ</h4></figcaption>
+		<figcaption>
+			<h4>Scenario 3: XYZ</h4>
+			<p>This scenario does some things</p>
+		</figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 3" />
 	</figure>
 </section>

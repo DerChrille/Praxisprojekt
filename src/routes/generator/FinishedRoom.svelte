@@ -34,9 +34,10 @@
 		obj.scenario = $scenario;
 		obj.roomAmount = $roomAmount;
 		obj.textStructure = chatGptAnswers;
+		obj.generationTime = Date.now();
 
 		if (browser) {
-			base64room = btoa(JSON.stringify(obj));
+			base64room = window.btoa(JSON.stringify(obj));
 			localStorage.setItem('last-room', base64room);
 		}
 
@@ -62,7 +63,7 @@
 		on:click={() => {
 			$generatorProgress = 0;
 			goto('/play');
-		}}>Fertig</button
+		}}>Play!</button
 	>
 {:catch error}
 	<p>There was an error: <code>{error.message}</code></p>

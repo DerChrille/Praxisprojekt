@@ -63,6 +63,11 @@
 			console.log(randomIndex, puzzles);
 			const randomPuzzle = puzzleChoices[randomIndex];
 
+			if (randomPuzzle === undefined) {
+				// we ran out of puzzles
+				break;
+			}
+
 			if (!typesAdded.has(randomPuzzle.type)) {
 				typesAdded.add(randomPuzzle.type);
 				puzzles.push(randomPuzzle);

@@ -8,4 +8,4 @@ export const roomAmount = writable(0);
 export const prompts = writable({});
 
 // play
-export const currentRoomPlaying = writable({});
+export const currentRoomPlaying = writable(null);

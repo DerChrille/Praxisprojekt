@@ -8,7 +8,21 @@
 		buttonDisabed = undefined;
 	}
 
-	$: buttonLabel = $scenario == 0 ? 'Choose a scenario' : `Continue with scenario #${$scenario}`;
+	$: scenarioNumber = (() => {
+		switch ($scenario) {
+			case 'scen1':
+				return 1;
+			case 'scen2':
+				return 2;
+			case 'scen3':
+				return 3;
+			default:
+				return null;
+		}
+	})();
+
+	$: buttonLabel =
+		$scenario == null ? 'Choose a scenario' : `Continue with scenario #${scenarioNumber}`;
 </script>
 
 <h2>Choose a scenario...</h2>
@@ -16,7 +30,7 @@
 
 <section>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<figure class:selected={$scenario == 1} on:click={() => selectScenario(1)}>
+	<figure class:selected={$scenario == 'scen1'} on:click={() => selectScenario('scen1')}>
 		<figcaption>
 			<h4>Scenario 1: XYZ</h4>
 			<p>This scenario does some things</p>
@@ -24,7 +38,7 @@
 		<img src="http://placekitten.com/500" alt="Scenario 1" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<figure class:selected={$scenario == 2} on:click={() => selectScenario(2)}>
+	<figure class:selected={$scenario == 'scen2'} on:click={() => selectScenario('scen2')}>
 		<figcaption>
 			<h4>Scenario 2: XYZ</h4>
 			<p>This scenario does some things</p>
@@ -32,7 +46,7 @@
 		<img src="http://placekitten.com/500" alt="Scenario 2" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<figure class:selected={$scenario == 3} on:click={() => selectScenario(3)}>
+	<figure class:selected={$scenario == 'scen3'} on:click={() => selectScenario('scen3')}>
 		<figcaption>
 			<h4>Scenario 3: XYZ</h4>
 			<p>This scenario does some things</p>

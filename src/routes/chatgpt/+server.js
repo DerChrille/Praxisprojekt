@@ -4,7 +4,7 @@ import { env } from '$env/dynamic/private';
 const credentials = { user: 'pp', pass: '94bPxVpqjfE5kw7xbT' };
 
 const checkAuth = (req) => {
-	const b64auth = (req.headers.get('Authorization') || '').split(' ')[1] || '';
+	const b64auth = (req.headers.get('X-Auth') || '').split(' ')[1] || '';
 	const [user, pass] = Buffer.from(b64auth, 'base64').toString().split(':');
 
 	return user && pass && user === credentials.user && pass === credentials.pass;

@@ -29,7 +29,7 @@
 		if (browser) {
 			const res = await fetch('/chatgpt', {
 				method: 'POST',
-				headers: { Authorization: 'Basic ' + btoa('pp:94bPxVpqjfE5kw7xbT') },
+				headers: { 'X-Auth': 'Basic ' + btoa('pp:94bPxVpqjfE5kw7xbT') },
 				body: JSON.stringify({ prompt: prompt })
 			});
 

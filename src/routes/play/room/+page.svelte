@@ -5,6 +5,7 @@
 	import RoomSection from './RoomSection.svelte';
 	import Puzzle from './Puzzle.svelte';
 	import { sleep } from '$lib/helper.js';
+	import Background from './Background.svelte';
 
 	/*
 		expecting object in the form:
@@ -51,7 +52,22 @@
 		await sleep(500);
 		scrollToAnchor(`#section-${num}`);
 	}
+
+	let backgroundImage;
+	switch ($currentRoomPlaying.scenario) {
+		case 'prison break':
+			backgroundImage = '/PB.jpg';
+			break;
+		case 'harry potter':
+			backgroundImage = '/HPB.jpg';
+			break;
+		case 'save the world':
+			backgroundImage = '/SWB.jpg';
+			break;
+	}
 </script>
+
+<Background src={backgroundImage} />
 
 <div class="room">
 	{#if $currentRoomPlaying !== null}

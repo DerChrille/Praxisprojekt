@@ -1,5 +1,11 @@
 <script>
-	import { PUZZLES, generatePrompt, PARAGRAPH_DIVIDER } from '$lib/global.js';
+	import {
+		PUZZLES,
+		generatePrompt,
+		PARAGRAPH_DIVIDER,
+		LINK_AFTER_FINISHING,
+		LINK_AFTER_FINISHING_LABEL
+	} from '$lib/global.js';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { scenario, prompts, roomAmount, generatorProgress } from '$lib/stores';
@@ -178,6 +184,10 @@
 			};
 			obj.generationTime = Date.now();
 			obj.puzzles = puzzles;
+			obj.finalLink = {
+				link: LINK_AFTER_FINISHING,
+				label: LINK_AFTER_FINISHING_LABEL
+			};
 
 			if (browser) {
 				base64room = window.btoa(JSON.stringify(obj));

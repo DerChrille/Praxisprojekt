@@ -5,7 +5,7 @@
 	import RoomSection from './RoomSection.svelte';
 	import Puzzle from './Puzzle.svelte';
 	import { sleep } from '$lib/helper.js';
-	import Background from './Background.svelte';
+	import Background from '$lib/Background.svelte';
 
 	/*
 		expecting object in the form:
@@ -94,7 +94,14 @@
 		>
 			<h2>Ending</h2>
 			<p>{$currentRoomPlaying.texts.ending}</p>
-			<button class="continue" on:click={() => goto('/')}>Return to the home page</button>
+			<button
+				class="continue"
+				on:click={() =>
+					goto($currentRoomPlaying.finalLink?.link ? $currentRoomPlaying.finalLink.link : '/')}
+				>{$currentRoomPlaying.finalLink?.link
+					? $currentRoomPlaying.finalLink.label
+					: 'Return to the home page'}</button
+			>
 		</RoomSection>
 	{:else}
 		<p>No room loaded. Return to the <a href="/">home page</a>.</p>

@@ -2,6 +2,9 @@ import { joinArrayNaturally } from '$lib/helper.js';
 
 export const PARAGRAPH_DIVIDER = '<--->';
 
+export const LINK_AFTER_FINISHING = null;
+export const LINK_AFTER_FINISHING_LABEL = 'Continue to survey';
+
 export function generatePrompt(puzzleDescriptions, scenarioDescription, promptWords) {
 	const paragraphs = puzzleDescriptions.length + 2;
 	let puzzleDescriptionString = '';

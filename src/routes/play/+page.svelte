@@ -78,7 +78,7 @@
 	}
 </script>
 
-<h2>Play your escape room!</h2>
+<h1>Play your escape room!</h1>
 
 <p>
 	Please paste your escape room code below. If you don't have a code, you can <a href="/generator"
@@ -112,5 +112,10 @@
 
 	button {
 		margin-top: 0.5em;
+	}
+
+	h1 {
+		text-align: center;
+		font-size: 350%;
 	}
 </style>

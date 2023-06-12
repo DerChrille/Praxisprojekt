@@ -13,7 +13,10 @@
 	async function checkSolution() {
 		let allCorrect = true;
 		for (let input of elInputs) {
-			if (input.value.trim() !== puzzle.solutionForm[input.dataset.id].correctValue) {
+			if (
+				input.value.toLowerCase().trim() !==
+				puzzle.solutionForm[input.dataset.id].correctValue.toLowerCase()
+			) {
 				allCorrect = false;
 			}
 		}
@@ -75,6 +78,6 @@
 
 	.not-correct {
 		position: absolute;
-		right: -6px;
+		right: 10px;
 	}
 </style>

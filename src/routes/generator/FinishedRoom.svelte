@@ -1,11 +1,50 @@
 <script>
-	import { PUZZLES, generatePrompt } from '$lib/global.js';
+	import { PUZZLES, generatePrompt, PARAGRAPH_DIVIDER } from '$lib/global.js';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { scenario, prompts, roomAmount, generatorProgress } from '$lib/stores';
 	import { sleep } from '$lib/helper.js';
 
 	let base64room;
+
+	const RETRY_AMOUNT = 2;
+
+	function checkAnswer(input, desiredParagraphAmount) {
+		input = input.replace(/\n/g, '');
+
+		if (!input.includes(PARAGRAPH_DIVIDER)) {
+			return {
+				status: false,
+				errorCode: 'ERROR_CHAT_GPT',
+				reason: 'ChatGPT Error'
+			};
+		}
+
+		const occurenceOfDivider = input.split(PARAGRAPH_DIVIDER).length - 1;
+
+		// divider appears n-1 times
+		if (occurenceOfDivider === desiredParagraphAmount - 1) {
+			return {
+				status: true,
+				reason: 'OK'
+			};
+		}
+
+		// divider appears n times + the last one is empty
+		if (occurenceOfDivider === desiredParagraphAmount && input.endsWith(PARAGRAPH_DIVIDER)) {
+			return {
+				status: true,
+				reason: 'OK'
+			};
+		}
+
+		// otherwise: structure error
+		return {
+			status: false,
+			errorCode: 'ERROR_STRUCTURE',
+			reason: 'Structure Error'
+		};
+	}
 
 	async function getChatGPTAnswers(scenario, prompts, puzzles) {
 		const puzzleExplanations = puzzles.map((p) => p.promptExplanation);
@@ -26,21 +65,54 @@
 		console.log('Sending', JSON.stringify({ prompt: prompt }));
 
 		let obj = {};
+		let success = false;
+
 		if (browser) {
-			const res = await fetch('/chatgpt', {
-				method: 'POST',
-				headers: { 'X-Auth': 'Basic ' + btoa('pp:94bPxVpqjfE5kw7xbT') },
-				body: JSON.stringify({ prompt: prompt })
-			});
+			for (let i = 0; i < RETRY_AMOUNT; i++) {
+				const res = await fetch('/chatgpt', {
+					method: 'POST',
+					headers: { 'X-Auth': 'Basic ' + btoa('pp:94bPxVpqjfE5kw7xbT') },
+					body: JSON.stringify({ prompt: prompt })
+				});
 
-			console.log('Received', res);
+				console.log('Received', res);
 
-			const json = await res.json();
+				const json = await res.json();
 
-			const paragraphs = json.text.split('\n\n');
-			obj.opening = paragraphs[0];
-			obj.ending = paragraphs[paragraphs.length - 1];
-			obj.puzzleTransitions = paragraphs.slice(1, paragraphs.length - 1);
+				const desiredParagraphAmount = puzzles.length + 2;
+
+				const isValid = checkAnswer(json.text, desiredParagraphAmount);
+
+				if (isValid.status === true) {
+					const paragraphs = json.text.replace(/\n/g, '').split(PARAGRAPH_DIVIDER);
+
+					if (paragraphs.length === desiredParagraphAmount) {
+						obj.opening = paragraphs[0];
+						obj.ending = paragraphs[paragraphs.length - 1];
+						obj.puzzleTransitions = paragraphs.slice(1, paragraphs.length - 1);
+						success = true;
+						break;
+					} else {
+						// sanity check failed: retry
+						continue;
+					}
+				} else {
+					// check error
+					if (isValid.errorCode === 'ERROR_STRUCTURE') {
+						// structure error: retry
+						continue;
+					} else {
+						// other error: log and break
+						console.error('ChatGPT Error', isValid);
+						break;
+					}
+				}
+			}
+
+			// failed
+			if (!success) {
+				return { error: 'We could not generate your desired escape room. Please try again.' };
+			}
 		}
 
 		return obj;
@@ -94,22 +166,26 @@
 		let puzzles = choosePuzzles($scenario, $roomAmount);
 		let chatGptAnswers = await getChatGPTAnswers($scenario, $prompts, puzzles);
 
-		obj.scenario = $scenario;
-		obj.roomAmount = parseInt($roomAmount, 10);
-		obj.texts = {
-			opening: chatGptAnswers.opening,
-			ending: chatGptAnswers.ending,
-			puzzleTransitions: chatGptAnswers.puzzleTransitions
-		};
-		obj.generationTime = Date.now();
-		obj.puzzles = puzzles;
+		if (chatGptAnswers.error !== undefined) {
+			return { error: chatGptAnswers.error };
+		} else {
+			obj.scenario = $scenario;
+			obj.roomAmount = parseInt($roomAmount, 10);
+			obj.texts = {
+				opening: chatGptAnswers.opening,
+				ending: chatGptAnswers.ending,
+				puzzleTransitions: chatGptAnswers.puzzleTransitions
+			};
+			obj.generationTime = Date.now();
+			obj.puzzles = puzzles;
 
-		if (browser) {
-			base64room = window.btoa(JSON.stringify(obj));
-			localStorage.setItem('last-room', base64room);
+			if (browser) {
+				base64room = window.btoa(JSON.stringify(obj));
+				localStorage.setItem('last-room', base64room);
+			}
+
+			return obj;
 		}
-
-		return obj;
 	}
 </script>
 
@@ -118,21 +194,27 @@
 		<h3>Building escape room ...</h3>
 		<div class="lds-dual-ring" />
 	</div>
-{:then}
-	<h2>Done!</h2>
-	<p>
-		Your escape room was created. Please copy the text below if you want to share it with your
-		friends. Click the Play button below to play your escape room.
-	</p>
+{:then output}
+	{#if output.error !== undefined}
+		<h2>There was a problem.</h2>
+		<p>{output.error}</p>
+		<p>Return to the <a href="/">home page</a>.</p>
+	{:else}
+		<h2>Done!</h2>
+		<p>
+			Your escape room was created. Please copy the text below if you want to share it with your
+			friends. Click the Play button below to play your escape room.
+		</p>
 
-	<textarea rows="15" value={base64room} disabled />
+		<textarea rows="15" value={base64room} disabled />
 
-	<button
-		on:click={() => {
-			$generatorProgress = 0;
-			goto('/play');
-		}}>Play!</button
-	>
+		<button
+			on:click={() => {
+				$generatorProgress = 0;
+				goto('/play');
+			}}>Play!</button
+		>
+	{/if}
 {:catch error}
 	<p>There was an error: <code>{error.message}</code></p>
 {/await}

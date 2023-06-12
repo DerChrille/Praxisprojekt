@@ -1,5 +1,5 @@
 import { ChatGPTAPI } from 'chatgpt';
-import { OPENAI_API_KEY } from '$env/static/private';
+import { OPENAI_API_KEY } from '$env/dynamic/private';
 
 const credentials = { user: 'pp', pass: '94bPxVpqjfE5kw7xbT' };
 

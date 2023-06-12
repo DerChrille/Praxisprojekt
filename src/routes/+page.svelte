@@ -1,5 +1,11 @@
 <script>
+	import { generatorProgress } from '$lib/stores.js';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		$generatorProgress = 0;
+	});
 </script>
 
 <h1>Welcome!</h1>

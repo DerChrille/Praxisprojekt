@@ -23,7 +23,7 @@
 			what else do we need to craft a prompt?
 		*/
 
-		console.log('Generated prompt', prompt);
+		console.log('Sending', JSON.stringify({ prompt: prompt }));
 
 		let obj = {};
 		if (browser) {
@@ -33,9 +33,9 @@
 				body: JSON.stringify({ prompt: prompt })
 			});
 
-			const json = await res.json();
+			console.log('Received', res);
 
-			console.log('ANSWER', json);
+			const json = await res.json();
 
 			const paragraphs = json.text.split('\n\n');
 			obj.opening = paragraphs[0];

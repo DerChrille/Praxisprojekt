@@ -1,5 +1,5 @@
 import { ChatGPTAPI } from 'chatgpt';
-import { OPENAI_API_KEY } from '$env/dynamic/private';
+import { env } from '$env/dynamic/private';
 
 const credentials = { user: 'pp', pass: '94bPxVpqjfE5kw7xbT' };
 
@@ -32,7 +32,7 @@ export async function POST({ request }) {
 
 	try {
 		const api = new ChatGPTAPI({
-			apiKey: OPENAI_API_KEY,
+			apiKey: env.OPENAI_API_KEY,
 			completionParams: {
 				model: 'gpt-3.5-turbo'
 			}

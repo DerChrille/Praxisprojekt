@@ -1,6 +1,7 @@
 <script>
 	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
+	import { sleep } from '$lib/helper.js';
 
 	export let puzzle;
 	let showNotCorrect = false;
@@ -20,7 +21,7 @@
 			dispatch('correct');
 		} else {
 			showNotCorrect = true;
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			await sleep(1000);
 			showNotCorrect = false;
 		}
 	}

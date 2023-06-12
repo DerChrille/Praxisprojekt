@@ -1,19 +1,15 @@
 <script>
-	import { PUZZLES } from '$lib/global.js';
+	import { PUZZLES, generatePrompt } from '$lib/global.js';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { scenario, prompts, roomAmount, generatorProgress } from '$lib/stores';
+	import { sleep } from '$lib/helper.js';
 
 	let base64room;
 
 	async function getChatGPTAnswers(scenario, prompts, puzzles) {
-		// TODO: Get actual answers
-		// we can expect the structure to be like this:
-		// <opening> <puzzle description per roomAmount> <ending>
-
-		// fake wait time
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
+		const puzzleExplanations = puzzles.map((p) => p.promptExplanation);
+		const prompt = generatePrompt(puzzleExplanations, scenario, prompts);
 		/*
 			what chatgpt actually gets:
 			- the chosen scenario id (variable scenario)
@@ -27,17 +23,24 @@
 			what else do we need to craft a prompt?
 		*/
 
-		let obj = {
-			opening: `bla bla opening w/ scenario ${scenario} and prompts ${Object.values(prompts).join(
-				', '
-			)}`,
-			ending: 'bla bla ending',
-			puzzleDescriptions: []
-		};
-		for (let i = 0; i < puzzles.length; i++) {
-			obj.puzzleDescriptions.push(
-				`bla bla introducing room #${i}. we transition into a puzzle of type "${puzzles[i].type}"`
-			);
+		console.log('Generated prompt', prompt);
+
+		let obj = {};
+		if (browser) {
+			const res = await fetch('/chatgpt', {
+				method: 'POST',
+				headers: { Authorization: 'Basic ' + btoa('pp:94bPxVpqjfE5kw7xbT') },
+				body: JSON.stringify({ prompt: prompt })
+			});
+
+			const json = await res.json();
+
+			console.log('ANSWER', json);
+
+			const paragraphs = json.text.split('\n\n');
+			obj.opening = paragraphs[0];
+			obj.ending = paragraphs[paragraphs.length - 1];
+			obj.puzzleTransitions = paragraphs.slice(1, paragraphs.length - 1);
 		}
 
 		return obj;
@@ -95,7 +98,8 @@
 		obj.roomAmount = parseInt($roomAmount, 10);
 		obj.texts = {
 			opening: chatGptAnswers.opening,
-			ending: chatGptAnswers.ending
+			ending: chatGptAnswers.ending,
+			puzzleTransitions: chatGptAnswers.puzzleTransitions
 		};
 		obj.generationTime = Date.now();
 		obj.puzzles = puzzles;

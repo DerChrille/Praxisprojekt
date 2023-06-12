@@ -4,6 +4,7 @@
 	import { currentRoomPlaying } from '$lib/stores.js';
 	import RoomSection from './RoomSection.svelte';
 	import Puzzle from './Puzzle.svelte';
+	import { sleep } from '$lib/helper.js';
 
 	/*
 		expecting object in the form:
@@ -19,7 +20,7 @@
 			puzzles: [ // entry per puzzle room
 				{
 					type: "" // string (e.g. "doors")
-					matchesScenario: [], // array of strings (e.g. ["scen1", "scen2"])
+					matchesScenario: [], // array of strings (e.g. ["prison break", "harry potter"])
 					description: "" // string (paragraph)
 					imgLink: "" // string (url)
 					solutionForm: [ // structure provides support for more forms
@@ -47,7 +48,7 @@
 
 	async function setProgress(num) {
 		progress = num;
-		await new Promise((resolve) => setTimeout(resolve, 500));
+		await sleep(500);
 		scrollToAnchor(`#section-${num}`);
 	}
 </script>
@@ -63,6 +64,9 @@
 		{#each $currentRoomPlaying.puzzles as puzzle, i}
 			<RoomSection show={progress > i} disabled={progress > i + 1} anchorId="section-{i + 1}">
 				<h2>Room {i + 1}</h2>
+
+				<p>{$currentRoomPlaying.texts.puzzleTransitions[i]}</p>
+
 				<Puzzle {puzzle} on:correct={async () => await setProgress(progress + 1)} />
 			</RoomSection>
 		{/each}

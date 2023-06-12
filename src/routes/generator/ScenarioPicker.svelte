@@ -10,11 +10,11 @@
 
 	$: scenarioNumber = (() => {
 		switch ($scenario) {
-			case 'scen1':
+			case 'prison break':
 				return 1;
-			case 'scen2':
+			case 'harry potter':
 				return 2;
-			case 'scen3':
+			case 'save the world':
 				return 3;
 			default:
 				return null;
@@ -30,25 +30,34 @@
 
 <section>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<figure class:selected={$scenario == 'scen1'} on:click={() => selectScenario('scen1')}>
+	<figure
+		class:selected={$scenario == 'prison break'}
+		on:click={() => selectScenario('prison break')}
+	>
 		<figcaption>
-			<h4>Scenario 1: XYZ</h4>
+			<h4>Scenario 1: Prison Break</h4>
 			<p>This scenario does some things</p>
 		</figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 1" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<figure class:selected={$scenario == 'scen2'} on:click={() => selectScenario('scen2')}>
+	<figure
+		class:selected={$scenario == 'harry potter'}
+		on:click={() => selectScenario('harry potter')}
+	>
 		<figcaption>
-			<h4>Scenario 2: XYZ</h4>
+			<h4>Scenario 2: Harry Potter</h4>
 			<p>This scenario does some things</p>
 		</figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 2" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
-	<figure class:selected={$scenario == 'scen3'} on:click={() => selectScenario('scen3')}>
+	<figure
+		class:selected={$scenario == 'save the world'}
+		on:click={() => selectScenario('save the world')}
+	>
 		<figcaption>
-			<h4>Scenario 3: XYZ</h4>
+			<h4>Scenario 3: Save the world!</h4>
 			<p>This scenario does some things</p>
 		</figcaption>
 		<img src="http://placekitten.com/500" alt="Scenario 3" />

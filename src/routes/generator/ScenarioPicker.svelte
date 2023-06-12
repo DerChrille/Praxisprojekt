@@ -38,7 +38,7 @@
 			<h4>Scenario 1: Prison Break</h4>
 			<p>This scenario does some things</p>
 		</figcaption>
-		<img src="/PI.jpg" alt="Scenario 1" />
+		<img src="/img/icon/PI.jpg" alt="Scenario 1" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
 	<figure
@@ -49,7 +49,7 @@
 			<h4>Scenario 2: Harry Potter</h4>
 			<p>This scenario does some things</p>
 		</figcaption>
-		<img src="HPI.jpg" alt="Scenario 2" />
+		<img src="/img/icon/HPI.jpg" alt="Scenario 2" />
 	</figure>
 	<!-- svelte-ignore a11y-click-events-have-key-events-->
 	<figure
@@ -60,7 +60,7 @@
 			<h4>Scenario 3: Save the world!</h4>
 			<p>This scenario does some things</p>
 		</figcaption>
-		<img src="SWI.jpg" alt="Scenario 3" />
+		<img src="/img/icon/SWI.jpg" alt="Scenario 3" />
 	</figure>
 </section>
 

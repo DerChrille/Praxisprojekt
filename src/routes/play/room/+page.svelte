@@ -56,13 +56,13 @@
 	let backgroundImage;
 	switch ($currentRoomPlaying.scenario) {
 		case 'prison break':
-			backgroundImage = '/PB.jpg';
+			backgroundImage = '/img/background/PB.jpg';
 			break;
 		case 'harry potter':
-			backgroundImage = '/HPB.jpg';
+			backgroundImage = '/img/background/HPB.jpg';
 			break;
 		case 'save the world':
-			backgroundImage = '/SWB.jpg';
+			backgroundImage = '/img/background/SWB.jpg';
 			break;
 	}
 </script>

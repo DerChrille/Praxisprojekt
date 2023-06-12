@@ -38,7 +38,7 @@ export const PUZZLES = [
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle to get the keylock combination for a metal door', // description for chatgpt
 		imgLink: 'http://placekitten.com/200/200', // image
-		matchesScenario: ['prison break'], // which scenario can use this riddle
+		matchesScenario: ['prison break'], // which scenario can use this riddle (e.g. "prison break", "harry potter", "save the world")
 		solutionForm: [
 			{
 				type: 'text',

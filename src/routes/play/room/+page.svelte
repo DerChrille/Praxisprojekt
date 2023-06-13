@@ -54,7 +54,7 @@
 	}
 
 	let backgroundImage;
-	switch ($currentRoomPlaying.scenario) {
+	switch ($currentRoomPlaying?.scenario) {
 		case 'prison break':
 			backgroundImage = '/img/background/PB.jpg';
 			break;

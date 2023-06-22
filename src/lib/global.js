@@ -81,15 +81,15 @@ export const PUZZLES = [
 	},
 	{
 		type: 'math',
-		description: 
-			"In a magical potion-making class, three witches named Agatha, Beatrice, and Cassandra\n"+
-			"are competing to brew the most potent potions. Each witch has a unique ingredient and a specific quantity.\n"+
-			"The following clues will help you determine the quantity of each ingredient:\n"+
-			"1.	The sum of Agatha's ingredient and Beatrice's ingredient is 14.\n"+
-			"2.	Cassandra's ingredient is twice as much as Agatha's ingredient.\n"+
-			"3.	The total quantity of all the ingredients is 36.\n"+
-			"How many ingredients did Agatha and Cassandra use?",
-			
+		description:
+			'In a magical potion-making class, three witches named Agatha, Beatrice, and Cassandra\n' +
+			'are competing to brew the most potent potions. Each witch has a unique ingredient and a specific quantity.\n' +
+			'The following clues will help you determine the quantity of each ingredient:\n' +
+			"1.	The sum of Agatha's ingredient and Beatrice's ingredient is 14.\n" +
+			"2.	Cassandra's ingredient is twice as much as Agatha's ingredient.\n" +
+			'3.	The total quantity of all the ingredients is 36.\n' +
+			'How many ingredients did Agatha and Cassandra use?',
+
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle, written on an note on a ouija board',
 		imgLink: '/img/riddle/math/hp math.png',
@@ -104,10 +104,10 @@ export const PUZZLES = [
 	},
 	{
 		type: 'math',
-		description: 
-			`A problem has occured! This riddle had bad words! So here is a <3!`,
-		
-		promptExplanation:'A story that leads to a puzzle where you have to solve a riddle, written on the wall next to an keypad.',
+		description: `A problem has occured! This riddle had bad words! So here is a <3!`,
+
+		promptExplanation:
+			'A story that leads to a puzzle where you have to solve a riddle, written on the wall next to an keypad.',
 		imgLink: '/img/riddle/math/prison math.png',
 		matchesScenario: ['prison break'],
 		solutionForm: [
@@ -120,10 +120,11 @@ export const PUZZLES = [
 	},
 	{
 		type: 'math',
-		description: 
+		description:
 			"In case we forget the passcode again, remember the solution to this riddle: We took over the world in 2020. If you find the biggest prime number that you can divide 2020 with, square that number and that's the passcode!",
-		
-		promptExplanation:'A story that leads to a puzzle where you have to solve a riddle, written an note next to a wooden keyboard.',
+
+		promptExplanation:
+			'A story that leads to a puzzle where you have to solve a riddle, written an note next to a wooden keyboard.',
 		imgLink: '/img/riddle/math/stw math.png',
 		matchesScenario: ['save the world'],
 		solutionForm: [

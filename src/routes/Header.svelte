@@ -5,7 +5,7 @@
 <header>
 	<div class="blocker" />
 	<a href="/"><h2>Escape Room Generator</h2></a>
-	<nav>
+	<!--<nav>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
@@ -17,14 +17,14 @@
 				<a href="/play">Play</a>
 			</li>
 		</ul>
-	</nav>
+	</nav>-->
 </header>
 
 <style>
 	.blocker,
-	nav {
+	/*nav {
 		flex: 1;
-	}
+	}*/
 
 	header {
 		display: flex;
@@ -37,7 +37,7 @@
 		margin-bottom: 0;
 	}
 
-	nav {
+	/*nav {
 		display: flex;
 		justify-content: flex-end;
 	}
@@ -74,7 +74,7 @@
 		text-transform: uppercase;
 		text-decoration: none;
 		transition: color 0.2s linear;
-	}
+	}*/
 
 	a:hover {
 		color: var(--color-theme-1);

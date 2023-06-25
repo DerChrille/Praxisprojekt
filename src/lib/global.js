@@ -34,8 +34,8 @@ Rules:
 export const PUZZLES = [
 	{
 		type: 'riddle', // to avoid multiple of the same puzzle type
-		description: `The door marked by a symbol unknown, guards secrets ancient, waiting to be shown. Answer me 
-		this: in magic's grand show, what disappears, but continues to grow?`, // text for the puzzle
+		description:
+			"The door marked by a symbol unknown, guards secrets ancient, waiting to be shown. Answer me this: in magic's grand show, what disappears, but continues to grow?", // text for the puzzle
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle, written on an triangle shaped, wooden door', // description for chatgpt
 		imgLink: '/img/riddle/door/hp door1.png', // image
@@ -65,8 +65,8 @@ export const PUZZLES = [
 	},
 	{
 		type: 'riddle', // to avoid multiple of the same puzzle type
-		description: `The door, a murky, swirling tide, a sea of chaos, where hope can't easily hide. Amidst the depths, a 
-						query emerges clear, tell me, what do we strive for to make conflicts disappear?`, // text for the puzzle
+		description:
+			"The door, a murky, swirling tide, a sea of chaos, where hope can't easily hide. Amidst the depths, a query emerges clear, tell me, what do we strive for to make conflicts disappear?", // text for the puzzle
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle, written on an metal door with an strange golden heart on it.', // description for chatgpt
 		imgLink: '/img/riddle/door/stw door1.png', // image
@@ -125,7 +125,6 @@ How many ingredients did Agatha and Cassandra use?`,
 		type: 'math',
 		description:
 			"In case we forget the passcode again, remember the solution to this riddle: We took over the world in 2020. If you find the biggest prime number that you can divide 2020 with, square that number and that's the passcode!",
-
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle, written an note next to a wooden keyboard.',
 		imgLink: '/img/riddle/math/stw math.png',

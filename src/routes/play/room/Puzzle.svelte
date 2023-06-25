@@ -2,9 +2,11 @@
 	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import { sleep } from '$lib/helper.js';
+	import PuzzleHints from './PuzzleHints.svelte';
 
 	export let puzzle;
 	let showNotCorrect = false;
+	let solvedPuzzle = false;
 
 	let elInputs = [];
 
@@ -22,14 +24,24 @@
 		}
 		if (allCorrect) {
 			dispatch('correct');
+			solvedPuzzle = true;
 		} else {
 			showNotCorrect = true;
 			await sleep(1000);
 			showNotCorrect = false;
 		}
 	}
+
+	function autoSolve() {
+		for (let input of elInputs) {
+			input.value = puzzle.solutionForm[input.dataset.id].correctValue;
+		}
+
+		checkSolution();
+	}
 </script>
 
+<!-- eslint-disable svelte/no-at-html-tags -->
 <p>{@html puzzle.description}</p>
 
 <img src={puzzle.imgLink} alt={puzzle.type} />
@@ -50,6 +62,8 @@
 			>{/if}
 		<button on:click={async () => await checkSolution()} type="button">Check</button>
 	{/each}
+
+	<PuzzleHints hints={puzzle.hints} solved={solvedPuzzle} on:hint-solve={autoSolve} />
 </form>
 
 <style>

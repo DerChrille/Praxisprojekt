@@ -13,7 +13,7 @@
 
 	let base64room;
 
-	const RETRY_AMOUNT = 2;
+	const RETRY_AMOUNT = 6;
 
 	function checkAnswer(input, desiredParagraphAmount) {
 		input = input.replace(/\n/g, '');
@@ -83,7 +83,14 @@
 
 				console.log('Received', res);
 
-				const json = await res.json();
+				let json;
+				try {
+					json = await res.json();
+				} catch (e) {
+					// json error: retry
+					console.error(e);
+					continue;
+				}
 
 				const desiredParagraphAmount = puzzles.length + 2;
 

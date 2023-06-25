@@ -30,7 +30,7 @@
 	}
 </script>
 
-<p>{puzzle.description}</p>
+<p>{@html puzzle.description}</p>
 
 <img src={puzzle.imgLink} alt={puzzle.type} />
 

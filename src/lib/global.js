@@ -81,15 +81,14 @@ export const PUZZLES = [
 	},
 	{
 		type: 'math',
-		description:
-			'In a magical potion-making class, three witches named Agatha, Beatrice, and Cassandra\n' +
-			'are competing to brew the most potent potions. Each witch has a unique ingredient and a specific quantity.\n' +
-			'The following clues will help you determine the quantity of each ingredient:\n' +
-			"1.	The sum of Agatha's ingredient and Beatrice's ingredient is 14.\n" +
-			"2.	Cassandra's ingredient is twice as much as Agatha's ingredient.\n" +
-			'3.	The total quantity of all the ingredients is 36.\n' +
-			'How many ingredients did Agatha and Cassandra use?',
-
+		description: `
+'In a magical potion-making class, three witches named Agatha, Beatrice, and Cassandra
+'are competing to brew the most potent potions. Each witch has a unique ingredient and a specific quantity.
+'The following clues will help you determine the quantity of each ingredient:
+"1.	The sum of Agatha's ingredient and Beatrice's ingredient is 14.
+"2.	Cassandra's ingredient is twice as much as Agatha's ingredient.
+'3.	The total quantity of all the ingredients is 36.
+'How many ingredients did Agatha and Cassandra use?'`,
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle, written on an note on a ouija board',
 		imgLink: '/img/riddle/math/hp math.png',
@@ -100,7 +99,8 @@ export const PUZZLES = [
 				correctValue: 'ABC123',
 				maxLength: '10'
 			}
-		]
+		],
+		hints: ['hint 1', 'hint 2', 'hint 3']
 	},
 	{
 		type: 'math',
@@ -116,7 +116,8 @@ export const PUZZLES = [
 				correctValue: 'ABC123',
 				maxLength: '10'
 			}
-		]
+		],
+		hints: ['hint 1', 'hint 2', 'hint 3']
 	},
 	{
 		type: 'math',
@@ -133,7 +134,8 @@ export const PUZZLES = [
 				correctValue: 'ABC123',
 				maxLength: '10'
 			}
-		]
+		],
+		hints: ['hint 1', 'hint 2', 'hint 3']
 	},
 	{
 		type: 'caesar',
@@ -148,7 +150,8 @@ export const PUZZLES = [
 				correctValue: 'ABC123',
 				maxLength: '10'
 			}
-		]
+		],
+		hints: ['hint 1', 'hint 2', 'hint 3']
 	},
 	{
 		type: 'caesar',
@@ -163,7 +166,8 @@ export const PUZZLES = [
 				correctValue: 'ABC123',
 				maxLength: '10'
 			}
-		]
+		],
+		hints: ['hint 1', 'hint 2', 'hint 3']
 	},
 	{
 		type: 'caesar',
@@ -178,6 +182,7 @@ export const PUZZLES = [
 				correctValue: 'ABC123',
 				maxLength: '10'
 			}
-		]
+		],
+		hints: ['hint 1', 'hint 2', 'hint 3']
 	}
 ];

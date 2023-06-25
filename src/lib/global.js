@@ -2,7 +2,7 @@ import { joinArrayNaturally } from '$lib/helper.js';
 
 export const PARAGRAPH_DIVIDER = '<--->';
 
-export const LINK_AFTER_FINISHING = null;
+export const LINK_AFTER_FINISHING = 'https://www.soscisurvey.de/PP2023/';
 export const LINK_AFTER_FINISHING_LABEL = 'Continue to survey';
 
 export function generatePrompt(puzzleDescriptions, scenarioDescription, promptWords) {
@@ -21,9 +21,11 @@ ${puzzleDescriptionString}- An ending paragraph that concludes the story.
 
 Rules:
 - Give me exactly ${paragraphs} paragraphs!
-- Create a story in a ${scenarioDescription} universe which is bend around ${joinArrayNaturally(
-		Object.values(promptWords)
-	)}!
+- Create a story in a ${scenarioDescription} universe${
+		promptWords?.length > 0
+			? ` which is bend around ${joinArrayNaturally(Object.values(promptWords))}`
+			: ''
+	}!
 - Each structure should be parted by a "${PARAGRAPH_DIVIDER}"!
 - Do not label the paragraphs! 
 - Do not give the riddles or answers!`;

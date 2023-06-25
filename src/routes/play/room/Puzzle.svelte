@@ -63,7 +63,9 @@
 		<button on:click={async () => await checkSolution()} type="button">Check</button>
 	{/each}
 
-	<PuzzleHints hints={puzzle.hints} solved={solvedPuzzle} on:hint-solve={autoSolve} />
+	{#if puzzle?.hints}
+		<PuzzleHints hints={puzzle.hints} solved={solvedPuzzle} on:hint-solve={autoSolve} />
+	{/if}
 </form>
 
 <style>

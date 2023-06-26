@@ -87,7 +87,7 @@
 <p />
 <p />
 <p />
-<h4>You already generated a room? Or got on from a friend?</h4>
+<h4>You already generated a room? Or got one from a friend?</h4>
 
 {#if feedback != ''}
 	<p in:fade class="feedback">

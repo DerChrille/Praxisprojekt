@@ -36,7 +36,7 @@
 	>
 		<figcaption>
 			<h4>Scenario 1: Prison Break</h4>
-			<p>This scenario does some things</p>
+			<p>Locked behind iron bars and surrounded by danger, that's how your escape begins!</p>
 		</figcaption>
 		<img src="/img/icon/PI.jpg" alt="Scenario 1" />
 	</figure>
@@ -47,7 +47,7 @@
 	>
 		<figcaption>
 			<h4>Scenario 2: Harry Potter</h4>
-			<p>This scenario does some things</p>
+			<p>Venture through the enchanted corridors of Hogwarts and unravel their secrets.</p>
 		</figcaption>
 		<img src="/img/icon/HPI.jpg" alt="Scenario 2" />
 	</figure>
@@ -58,7 +58,7 @@
 	>
 		<figcaption>
 			<h4>Scenario 3: Save the world!</h4>
-			<p>This scenario does some things</p>
+			<p>A global crisis looms overhead. Navigate treacherous traps and save humanity!</p>
 		</figcaption>
 		<img src="/img/icon/SWI.jpg" alt="Scenario 3" />
 	</figure>

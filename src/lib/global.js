@@ -16,8 +16,8 @@ export function generatePrompt(puzzleDescriptions, scenarioDescription, promptWo
 
 Give me the textual structure for the story. The story is structured as follows:
 
-- A beginning.
-${puzzleDescriptionString}- An ending paragraph that concludes the story.
+- A fitting beginning to the story.
+${puzzleDescriptionString}- A fitting conclusion for the story.
 
 Rules:
 - Give me exactly ${paragraphs} paragraphs!
@@ -35,98 +35,155 @@ Rules:
 
 export const PUZZLES = [
 	{
-		type: 'riddle', // to avoid multiple of the same puzzle type
-		description:
-			"The door marked by a symbol unknown, guards secrets ancient, waiting to be shown. Answer me this: in magic's grand show, what disappears, but continues to grow?", // text for the puzzle
+		type: 'crossword',
+		description: `Crossword: Fault (5)`,
+
 		promptExplanation:
-			'A story that leads to a puzzle where you have to solve a riddle, written on an triangle shaped, wooden door', // description for chatgpt
-		imgLink: '/img/riddle/door/hp door1.png', // image
-		matchesScenario: ['harry potter'], // which scenario can use this riddle (e.g. "prison break", "harry potter", "save the world")
-		solutionForm: [
-			{
-				type: 'text',
-				correctValue: 'ABC123', // correct answer
-				maxLength: '10'
-			}
-		]
-	},
-	{
-		type: 'riddle', // to avoid multiple of the same puzzle type
-		description: `The door sturdy with iron and might, Promises an exit, hidden from sight. Complete this riddle, and it shall set you free, What location holds power over your plea?`, // text for the puzzle
-		promptExplanation:
-			'A story that leads to a puzzle where you have to solve a riddle, written on an solid, reinfored door.', // description for chatgpt
-		imgLink: '/img/riddle/door/pb door1.png', // image
-		matchesScenario: ['prison break'], // which scenario can use this riddle (e.g. "prison break", "harry potter", "save the world")
-		solutionForm: [
-			{
-				type: 'text',
-				correctValue: 'ABC123', // correct answer
-				maxLength: '10'
-			}
-		]
-	},
-	{
-		type: 'riddle', // to avoid multiple of the same puzzle type
-		description:
-			"The door, a murky, swirling tide, a sea of chaos, where hope can't easily hide. Amidst the depths, a query emerges clear, tell me, what do we strive for to make conflicts disappear?", // text for the puzzle
-		promptExplanation:
-			'A story that leads to a puzzle where you have to solve a riddle, written on an metal door with an strange golden heart on it.', // description for chatgpt
-		imgLink: '/img/riddle/door/stw door1.png', // image
-		matchesScenario: ['save the world'], // which scenario can use this riddle (e.g. "prison break", "harry potter", "save the world")
-		solutionForm: [
-			{
-				type: 'text',
-				correctValue: 'ABC123', // correct answer
-				maxLength: '10'
-			}
-		]
-	},
-	{
-		type: 'math',
-		description: `
-In a magical potion-making class, three witches named Agatha, Beatrice, and Cassandra
-are competing to brew the most potent potions. Each witch has a unique ingredient and a specific quantity.
-The following clues will help you determine the quantity of each ingredient:
-<ol>
-<li>The sum of Agatha's ingredient and Beatrice's ingredient is 14.</li>
-<li>Cassandra's ingredient is twice as much as Agatha's ingredient.</li>
-<li>The total quantity of all the ingredients is 36.</ol>
-</ol>
-How many ingredients did Agatha and Cassandra use?`,
-		promptExplanation:
-			'A story that leads to a puzzle where you have to solve a riddle, written on an note on a ouija board',
-		imgLink: '/img/riddle/math/hp math.png',
+			'A story that leads to a puzzle where a you stand infront on an wall with a crossword.',
+		imgLink: '/img/riddle/wall/wall hp.jpg',
 		matchesScenario: ['harry potter'],
 		solutionForm: [
 			{
 				type: 'text',
-				correctValue: 'ABC123',
+				correctValue: 'Error',
 				maxLength: '10'
 			}
 		],
-		hints: ['hint 1', 'hint 2', 'hint 3']
+		hints: ['A different word for fault with 5 letters', 'Typically seen on Computers']
+	},
+	{
+		type: 'crossword',
+		description: `Crossword: Best conditions in the circumstances (7)`,
+
+		promptExplanation:
+			'A story that leads to a puzzle where a you stand infront on an wall with a crossword.',
+		imgLink: '/img/riddle/wall/wall pb.jpg',
+		matchesScenario: ['prison break'],
+		solutionForm: [
+			{
+				type: 'text',
+				correctValue: 'optimum',
+				maxLength: '10'
+			}
+		],
+		hints: [
+			'A different word for "Best conditions in the circumstances" with 7 letters',
+			'You have acheved the ...'
+		]
+	},
+	{
+		type: 'crossword',
+		description: `Crossword: Absolutly Not (2,3)`,
+
+		promptExplanation:
+			'A story that leads to a puzzle where a you stand infront on an wall with a crossword.',
+		imgLink: '/img/riddle/wall/wall stw.jpg',
+		matchesScenario: ['save the world'],
+		solutionForm: [
+			{
+				type: 'text',
+				correctValue: 'NO WAY',
+				maxLength: '10'
+			}
+		],
+		hints: [
+			'A different word for "Absolutly Not" with 2 and 3 letters',
+			'(__ ___)',
+			'Its also an exclamation'
+		]
+	},
+
+	{
+		type: 'riddle',
+		description: `In a castle full of secrets and enchanting lore, answer me this: I fly without wings, I cry without eyes. Wherever I go, darkness follows me. What am I?`,
+
+		promptExplanation:
+			'A story that leads to a puzzle where a riddle is etched into an triangle shaped door.',
+		imgLink: '/img/riddle/word/hp door1.png',
+		matchesScenario: ['harry potter'],
+		solutionForm: [
+			{
+				type: 'text',
+				correctValue: 'Cloud',
+				maxLength: '10'
+			}
+		],
+		hints: ['I am up in the sky.', 'I can change shape.', 'I can bring rain.']
+	},
+	{
+		type: 'riddle',
+		description: `Behind these walls, a puzzle unfolds: I am filled with water but I am not a lake, I can be washed but I'm not made of cloth, I can be cracked but I'm not an egg. What am I?`,
+
+		promptExplanation:
+			'A story that leads to a puzzle written on the wall next to a reinfoced iron door.',
+		imgLink: '/img/riddle/word/pb door1.png',
+		matchesScenario: ['prison break'],
+		solutionForm: [
+			{
+				type: 'text',
+				correctValue: 'Coconut',
+				maxLength: '10'
+			}
+		],
+		hints: ['I am a fruit.', 'I am often seen in tropical areas.', 'You can drink my water.']
+	},
+	{
+		type: 'riddle',
+		description: `To save our precious earth, solve this riddle: I am tall when I am young, and I am short when I am old. What am I?`,
+
+		promptExplanation:
+			'A story that leads to a puzzle written on the wall next to a door with an weird heart shaped artifact on it.',
+		imgLink: '/img/riddle/word/stw door1.png',
+		matchesScenario: ['save the world'],
+		solutionForm: [
+			{
+				type: 'text',
+				correctValue: 'Candle',
+				maxLength: '10'
+			}
+		],
+		hints: [
+			'I provide light.',
+			'I melt over time.',
+			'You use me during power outages or on birthday cakes.'
+		]
 	},
 	{
 		type: 'math',
-		description: `A problem has occured! This riddle had bad words! So here is a <3!`,
+		description: `1, 2, 6, 16, ?`,
 
-		promptExplanation:
-			'A story that leads to a puzzle where you have to solve a riddle, written on the wall next to an keypad.',
+		promptExplanation: 'A story that leads to a puzzle written on the wall next to an keypad.',
 		imgLink: '/img/riddle/math/prison math.png',
 		matchesScenario: ['prison break'],
 		solutionForm: [
 			{
 				type: 'text',
-				correctValue: 'ABC123',
+				correctValue: '44',
 				maxLength: '10'
 			}
 		],
-		hints: ['hint 1', 'hint 2', 'hint 3']
+		hints: ['Somthings gonna add up!', 'Make it double!', '(1+2)*2=6']
 	},
 	{
 		type: 'math',
-		description:
-			"In case we forget the passcode again, remember the solution to this riddle: We took over the world in 2020. If you find the biggest prime number that you can divide 2020 with, square that number and that's the passcode!",
+		description: `4, 3, 6, 8, 13, ?`,
+
+		promptExplanation:
+			'A story that leads to a puzzle where you have to solve a riddle, written on the back side of an ouija board.',
+		imgLink: '/img/riddle/math/hp math.png',
+		matchesScenario: ['harry potter'],
+		solutionForm: [
+			{
+				type: 'text',
+				correctValue: '20',
+				maxLength: '10'
+			}
+		],
+		hints: ['Somthings gonna add up!', 'Lets subtract!', '(4+3)-1=6']
+	},
+	{
+		type: 'math',
+		description: '1, 2, 3, 5, 8, 13, ?',
 		promptExplanation:
 			'A story that leads to a puzzle where you have to solve a riddle, written an note next to a wooden keyboard.',
 		imgLink: '/img/riddle/math/stw math.png',
@@ -134,58 +191,71 @@ How many ingredients did Agatha and Cassandra use?`,
 		solutionForm: [
 			{
 				type: 'text',
-				correctValue: 'ABC123',
+				correctValue: '21',
 				maxLength: '10'
 			}
 		],
-		hints: ['hint 1', 'hint 2', 'hint 3']
+		hints: ['Somthing gonna add up here!', '2 things add up to the next!', '1+2=3']
 	},
+
 	{
 		type: 'caesar',
-		description: 'Weird paper on the floor',
+		description: 'Its encoded!',
 		promptExplanation:
-			'A story that leads to a puzzle where you have to decipher a caesar cipher on a partly ripped paper on the floor.',
-		imgLink: '/img/riddle/ceasar/caesar pb.png',
-		matchesScenario: ['prison break'],
+			'A story that leads to a puzzle where you have to decipher a caesar cipher on an piece of paper.',
+		imgLink: '/img/riddle/ceasar/GRINKSE.jpg',
+		matchesScenario: ['harry potter', 'save the world', 'prison break'],
 		solutionForm: [
 			{
 				type: 'text',
-				correctValue: 'ABC123',
+				correctValue: 'alchemy',
 				maxLength: '10'
 			}
 		],
-		hints: ['hint 1', 'hint 2', 'hint 3']
+		hints: [
+			'A caesar-cipher rotates the alphabet in one direction',
+			'The alphabet was rotated 6 times',
+			'6 <--'
+		]
 	},
 	{
 		type: 'caesar',
-		description: 'A lot of burns!',
+		description: 'Its encoded!',
 		promptExplanation:
-			'A story that leads to a puzzle where you have to decipher a caesar cipher on an old, partly burned, paper.',
-		imgLink: '/img/riddle/ceasar/caesar hp.png',
-		matchesScenario: ['harry potter'],
+			'A story that leads to a puzzle where you have to decipher a caesar cipher on an ripped piece of paper.',
+		imgLink: '/img/riddle/ceasar/jgtmkx.jpeg',
+		matchesScenario: ['harry potter', 'save the world', 'prison break'],
 		solutionForm: [
 			{
 				type: 'text',
-				correctValue: 'ABC123',
+				correctValue: 'danger',
 				maxLength: '10'
 			}
 		],
-		hints: ['hint 1', 'hint 2', 'hint 3']
+		hints: [
+			'A caesar-cipher rotates the alphabet in one direction',
+			'The alphabet was rotated 6 times',
+			'6 <--'
+		]
 	},
 	{
 		type: 'caesar',
-		description: 'As scroll with an cypher:',
+		description: 'Its encoded!',
 		promptExplanation:
-			'A story that leads to a puzzle where you have to decipher a caesar cipher on an old scroll',
-		imgLink: '/img/riddle/ceasar/caesar stw.png',
-		matchesScenario: ['save the world'],
+			'A story that leads to a puzzle where you have to decipher a caesar cipher on a burned piece of paper.',
+		imgLink: '/img/riddle/ceasar/xkykz.jpeg',
+		matchesScenario: ['harry potter', 'save the world', 'prison break'],
 		solutionForm: [
 			{
 				type: 'text',
-				correctValue: 'ABC123',
+				correctValue: 'reset',
 				maxLength: '10'
 			}
 		],
-		hints: ['hint 1', 'hint 2', 'hint 3']
+		hints: [
+			'A caesar-cipher rotates the alphabet in one direction',
+			'The alphabet was rotated 6 times',
+			'6 <--'
+		]
 	}
 ];

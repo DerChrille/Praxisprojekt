@@ -28,7 +28,7 @@
 	}
 </script>
 
-<button disabled={solved || status > 0} on:click|preventDefault={() => (status = 1)}
+<button type="button" disabled={solved || status > 0} on:click|preventDefault={() => (status = 1)}
 	>Show {getHintWord(0)} hint</button
 >
 {#each hints as hint, i}
@@ -39,12 +39,15 @@
 			<br />
 			{#if puzzleIdx < hints.length}
 				<button
+					type="button"
 					disabled={solved || status > puzzleIdx}
 					on:click|preventDefault={() => (status += 1)}>Show {getHintWord(puzzleIdx)} hint</button
 				>
 			{:else}
-				<button disabled={solved} on:click|preventDefault={() => dispatch('hint-solve')}
-					>Solve puzzle</button
+				<button
+					type="button"
+					disabled={solved}
+					on:click|preventDefault={() => dispatch('hint-solve')}>Solve puzzle</button
 				>
 			{/if}
 		</div>

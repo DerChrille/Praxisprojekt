@@ -55,6 +55,7 @@
 	async function getChatGPTAnswers(scenario, prompts, puzzles) {
 		const puzzleExplanations = puzzles.map((p) => p.promptExplanation);
 		const prompt = generatePrompt(puzzleExplanations, scenario, prompts);
+
 		/*
 			what chatgpt actually gets:
 			- the chosen scenario id (variable scenario)
@@ -178,6 +179,7 @@
 		let obj = {};
 		let puzzles = choosePuzzles($scenario, $roomAmount);
 		let chatGptAnswers = await getChatGPTAnswers($scenario, $prompts, puzzles);
+		$prompts = {}; // reset prompts
 
 		if (chatGptAnswers.error !== undefined) {
 			return { error: chatGptAnswers.error };

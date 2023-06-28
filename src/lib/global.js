@@ -11,7 +11,7 @@ export function generatePrompt(puzzleDescriptions, scenarioDescription, promptWo
 	for (const description of puzzleDescriptions) {
 		puzzleDescriptionString += `- ${description}\n`;
 	}
-
+	console.log(promptWords);
 	const prompt = `I am writing an web-based escape room generator and need you to write the story beween the puzzles.
 
 Give me the textual structure for the story. The story is structured as follows:
@@ -22,7 +22,7 @@ ${puzzleDescriptionString}- A fitting conclusion for the story.
 Rules:
 - Give me exactly ${paragraphs} paragraphs!
 - Create a story in a ${scenarioDescription} universe${
-		promptWords?.length > 0
+		Object.keys(promptWords)?.length > 0
 			? ` which is bend around ${joinArrayNaturally(Object.values(promptWords))}`
 			: ''
 	}!
